@@ -1,0 +1,51 @@
+import time
+from decimal import Decimal, getcontext
+import time
+from decimal import Decimal, getcontext
+
+# 1. CONFIGURACIÓN: MIL MILLONES (1 GB de texto)
+getcontext().prec = 1000000000 
+
+def calcular_pi_un_gigabyte():
+    nombre_archivo = "pi_un_giga.txt"
+    
+    print("--- INICIANDO CÁLCULO DE MIL MILLONES (1 GB) ---", flush=True)
+    print("Tu RAM de 62GB es perfecta para esto. ¡Vamos allá!", flush=True)
+    
+    inicio_total = time.time()
+    
+    # Valores iniciales del algoritmo Brent-Salamin
+    a = Decimal(1)
+    b = 1 / Decimal(2).sqrt()
+    t = Decimal(0.25)
+    p = Decimal(1)
+    
+    # 31 iteraciones son suficientes para superar los 1,000 millones
+    for i in range(1, 32):
+        t_paso_inicio = time.time()
+        
+        a_sig = (a + b) / 2
+        b = (a * b).sqrt()
+        t -= p * (a - a_sig)**2
+        a = a_sig
+        p = 2 * p
+        
+        t_paso_fin = time.time()
+        print(f"Paso {i}/31 completado | Tiempo: {round(t_paso_fin - t_paso_inicio, 2)}s", flush=True)
+
+    print("\nCalculando el resultado final de PI...", flush=True)
+    resultado_pi = (a + b)**2 / (4 * t)
+    
+    fin_calculo = time.time()
+    print(f"--- CÁLCULO COMPLETADO EN {round((fin_calculo - inicio_total) / 60, 2)} MINUTOS ---", flush=True)
+
+    print(f"Escribiendo 1 GB de datos en '{nombre_archivo}'...", flush=True)
+    print("Aviso: El disco SSD trabajará duro un momento.", flush=True)
+    
+    with open(nombre_archivo, "w") as archivo:
+        archivo.write(str(resultado_pi))
+    
+    print(f"--- ¡PROCESO TOTAL TERMINADO! ---", flush=True)
+    print(f"Ya puedes abrir '{nombre_archivo}' con EmEditor.", flush=True)
+
+calcular_pi_un_gigabyte()
