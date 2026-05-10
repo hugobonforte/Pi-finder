@@ -10,7 +10,6 @@ def calcular_pi_un_gigabyte():
     nombre_archivo = "pi_un_giga.txt"
     
     print("--- INICIANDO CÁLCULO DE MIL MILLONES (1 GB) ---", flush=True)
-    print("Tu RAM de 62GB es perfecta para esto. ¡Vamos allá!", flush=True)
     
     inicio_total = time.time()
     
