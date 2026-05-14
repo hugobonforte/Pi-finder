@@ -7,6 +7,8 @@ getcontext().prec = 500000000  # Esto establece la precisión a 100 millones de 
 
 def calcular_pi():
     nombre_archivo = "calculo_pi.txt"
+
+    print(f'Se a iniciado el calculo de PI', flush=true)
     
     inicio_total = time.time()
     
