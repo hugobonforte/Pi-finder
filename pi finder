@@ -1,14 +1,12 @@
 import time
 from decimal import Decimal, getcontext
-import time
-from decimal import Decimal, getcontext
 
 getcontext().prec = 500000000  # Esto establece la precisión a 100 millones de dígitos
 
 def calcular_pi():
     nombre_archivo = "calculo_pi.txt"
 
-    print(f'Se a iniciado el calculo de PI', flush=true)
+    print(f'Se a iniciado el calculo de PI', flush=True)
     
     inicio_total = time.time()
     
