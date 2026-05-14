@@ -3,13 +3,10 @@ from decimal import Decimal, getcontext
 import time
 from decimal import Decimal, getcontext
 
-# 1. CONFIGURACIÓN: MIL MILLONES (1 GB de texto)
-getcontext().prec = 1000000000 
+getcontext().prec = 500000000  # Esto establece la precisión a 100 millones de dígitos
 
-def calcular_pi_un_gigabyte():
-    nombre_archivo = "pi_un_giga.txt"
-    
-    print("--- INICIANDO CÁLCULO DE MIL MILLONES (1 GB) ---", flush=True)
+def calcular_pi():
+    nombre_archivo = "calculo_pi.txt"
     
     inicio_total = time.time()
     
@@ -38,13 +35,12 @@ def calcular_pi_un_gigabyte():
     fin_calculo = time.time()
     print(f"--- CÁLCULO COMPLETADO EN {round((fin_calculo - inicio_total) / 60, 2)} MINUTOS ---", flush=True)
 
-    print(f"Escribiendo 1 GB de datos en '{nombre_archivo}'...", flush=True)
+    print(f"Escribiendo calculos en '{nombre_archivo}'...", flush=True)
     print("Aviso: El disco SSD trabajará duro un momento.", flush=True)
     
     with open(nombre_archivo, "w") as archivo:
         archivo.write(str(resultado_pi))
     
     print(f"--- ¡PROCESO TOTAL TERMINADO! ---", flush=True)
-    print(f"Ya puedes abrir '{nombre_archivo}' con EmEditor.", flush=True)
 
-calcular_pi_un_gigabyte()
+calcular_pi()
